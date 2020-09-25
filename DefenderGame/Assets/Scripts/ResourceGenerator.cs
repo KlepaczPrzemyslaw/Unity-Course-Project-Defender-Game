@@ -4,12 +4,49 @@ public class ResourceGenerator : MonoBehaviour
 {
 	private float timer;
 	private float timerMax;
-	private BuildingTypeSO buildingType;
+	private ResourceGeneratorData generatorData;
+
+	private Collider2D[] collidersCache;
+	private ResourceNode resourceCache;
+	private int nearbyResourceNodes;
 
 	void Start()
 	{
-		buildingType = GetComponent<BuildingTypeHolder>().buildingType;
-		timerMax = buildingType.generatorData.timerMax;
+		generatorData = GetComponent<BuildingTypeHolder>().buildingType.generatorData;
+		timerMax = generatorData.timerMax;
+
+		collidersCache = Physics2D.OverlapCircleAll(transform.position,
+			generatorData.resourceDetectionRadius);
+		nearbyResourceNodes = 0;
+		foreach (var collider in collidersCache)
+		{
+			if (collider.TryGetComponent(out resourceCache))
+			{
+				// Skip if wrong type
+				if (resourceCache.ResourceType != generatorData.resourceType)
+					continue;
+
+				// Add source
+				nearbyResourceNodes++;
+
+				// Break if max reached
+				if (nearbyResourceNodes >= generatorData.maxResourcesAmount)
+					break;
+			}
+		}
+
+		if (nearbyResourceNodes == 0)
+		{
+			enabled = false;
+		}
+		else
+		{
+			timerMax = (generatorData.timerMax / 2f) +
+				generatorData.timerMax *
+				(1 - (float)nearbyResourceNodes / generatorData.maxResourcesAmount);
+		}
+
+		Debug.Log($"{nearbyResourceNodes} gives: {1 / timerMax} pcs. {timerMax}");
 	}
 
 	void Update()
@@ -19,7 +56,7 @@ public class ResourceGenerator : MonoBehaviour
 		{
 			// Add
 			ResourceManager.Instance.AddResource(
-				buildingType.generatorData.resourceType, 1);
+				generatorData.resourceType, 1);
 
 			// Reset Timer
 			timer += timerMax;
