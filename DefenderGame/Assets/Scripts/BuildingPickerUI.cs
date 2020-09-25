@@ -14,6 +14,9 @@ public class BuildingPickerUI : MonoBehaviour
 	[SerializeField]
 	private Sprite arrowSprite = null;
 
+	[SerializeField]
+	private List<BuildingTypeSO> ignoreBuildingList = null;
+
 	private List<Button> buttons;
 	private Dictionary<BuildingTypeSO, Image> referenceForSelected;
 	private Image arrowImageRef;
@@ -85,27 +88,31 @@ public class BuildingPickerUI : MonoBehaviour
 		Resources.Load<BuildingTypesSO>(
 			typeof(BuildingTypesSO).Name).List.ForEach(x =>
 			{
-				// Instantiate
-				var currentInstance = Instantiate(pickBuildingPrefab, transform);
-
-				// Update -> Position / Image / Text
-				currentInstance.GetComponent<RectTransform>().anchoredPosition =
-					new Vector2(moveByPixels * i, 0);
-				currentInstance.Find("BuildingImage")
-					.GetComponent<Image>().sprite = x.sprite;
-
-				// Events
-				buttons.Add(currentInstance.GetComponent<Button>());
-				buttons[i].onClick.AddListener(() =>
+				// If type is not ignored
+				if (ignoreBuildingList.Contains(x) == false)
 				{
-					BuildingManager.Instance.ChangeActiveBuilding(x);
-					UpdateActiveBuildingType();
-				});
+					// Instantiate
+					var currentInstance = Instantiate(pickBuildingPrefab, transform);
 
-				referenceForSelected.Add(x, currentInstance
-					.Find("Selected").GetComponent<Image>());
+					// Update -> Position / Image / Text
+					currentInstance.GetComponent<RectTransform>().anchoredPosition =
+						new Vector2(moveByPixels * i, 0);
+					currentInstance.Find("BuildingImage")
+						.GetComponent<Image>().sprite = x.sprite;
 
-				i++;
+					// Events
+					buttons.Add(currentInstance.GetComponent<Button>());
+					buttons[i].onClick.AddListener(() =>
+					{
+						BuildingManager.Instance.ChangeActiveBuilding(x);
+						UpdateActiveBuildingType();
+					});
+
+					referenceForSelected.Add(x, currentInstance
+						.Find("Selected").GetComponent<Image>());
+
+					i++;
+				}
 			});
 	}
 }

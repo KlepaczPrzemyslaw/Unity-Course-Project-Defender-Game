@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5551569251752134124}
   - component: {fileID: 912111104476172859}
-  - component: {fileID: 535249290773056992}
+  - component: {fileID: 1943708346227130882}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2263e91ebcd2a254dab5f4caccb4a7af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7030b8e3eb49e8440ae8eb3ec8b45d05, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &535249290773056992
+--- !u!114 &1943708346227130882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,11 +105,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4979504751741875745}
-  - component: {fileID: -3247697450538125296}
-  - component: {fileID: -1250906200728442337}
-  - component: {fileID: 1526042519772808643}
+  - component: {fileID: -1132218544380211900}
+  - component: {fileID: 2625973399437354675}
+  - component: {fileID: 1992563399105944660}
   m_Layer: 0
-  m_Name: pfStoneHarvester
+  m_Name: pfHQ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3247697450538125296
+--- !u!114 &-1132218544380211900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8750ad8dbe3d1f4d84cb5826f0b01c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-1250906200728442337
+--- !u!114 &2625973399437354675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5429de88872a8c449aa93978ae56b758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingType: {fileID: 11400000, guid: acec802d3c133c444ab52cd29bf0ac6d, type: 2}
---- !u!61 &1526042519772808643
+  buildingType: {fileID: 11400000, guid: 95a0d12fb7d322f40b75fcbb62f6a4d0, type: 2}
+--- !u!61 &1992563399105944660
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.055530548, y: -0.23004723}
+  m_Offset: {x: 0.039836884, y: -0.9611964}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -179,5 +179,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.1879816, y: 4.347597}
+  m_Size: {x: 6.601241, y: 3.2667665}
   m_EdgeRadius: 0
