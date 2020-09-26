@@ -34,8 +34,12 @@ public class BuildingManager : MonoBehaviour
 		if (Input.GetMouseButtonDown(0) &&
 			!EventSystem.current.IsPointerOverGameObject() &&
 			activeBuildingType != null &&
-			CanSpawnBuilding(activeBuildingType, UtilitiesClass.GetMouseWorldPosition()))
+			CanSpawnBuilding(activeBuildingType, UtilitiesClass.GetMouseWorldPosition()) &&
+			ResourceManager.Instance.CanAfford(activeBuildingType.constructionCostArray))
+		{
+			ResourceManager.Instance.SpendResources(activeBuildingType.constructionCostArray);
 			Instantiate(activeBuildingType.prefab, UtilitiesClass.GetMouseWorldPosition(), Quaternion.identity);
+		}
 	}
 
 	public void ChangeActiveBuilding(BuildingTypeSO newType)
