@@ -5,6 +5,9 @@ public class BuildingGhost : MonoBehaviour
 	[SerializeField]
 	private GameObject spriteGameObject = null;
 
+	[SerializeField]
+	private ResourceNearbyOverlay resourceNearbyOverlay = null;
+
 	private SpriteRenderer spriteCache;
 
 	void Awake()
@@ -34,9 +37,15 @@ public class BuildingGhost : MonoBehaviour
 		BuildingManager.OnActiveBuildingTypeChangeArgs e)
 	{
 		if (e.activeBuildingType == null)
+		{
 			Hide();
+			resourceNearbyOverlay.Hide();
+		}
 		else
+		{
 			Show(e.activeBuildingType.sprite);
+			resourceNearbyOverlay.Show(e.activeBuildingType.generatorData);
+		}
 	}
 
 	private void Show(Sprite ghostSprite)

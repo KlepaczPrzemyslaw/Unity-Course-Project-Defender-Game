@@ -5,36 +5,53 @@ public class ResourceGenerator : MonoBehaviour
 	private float timer;
 	private float timerMax;
 	private ResourceGeneratorData generatorData;
-
-	private Collider2D[] collidersCache;
-	private ResourceNode resourceCache;
 	private int nearbyResourceNodes;
 
-	void Start()
-	{
-		generatorData = GetComponent<BuildingTypeHolder>().buildingType.generatorData;
-		timerMax = generatorData.timerMax;
+	#region Static
 
-		collidersCache = Physics2D.OverlapCircleAll(transform.position,
-			generatorData.resourceDetectionRadius);
-		nearbyResourceNodes = 0;
+	private static int nearbyResourceCache;
+	private static Collider2D[] collidersCache;
+	private static ResourceNode resourceCache;
+	public static int GetNearbyResourceAmount(ResourceGeneratorData resourceGeneratorData, Vector3 position)
+	{
+		collidersCache = Physics2D.OverlapCircleAll(position,
+			resourceGeneratorData.resourceDetectionRadius);
+
+		nearbyResourceCache = 0;
 		foreach (var collider in collidersCache)
 		{
 			if (collider.TryGetComponent(out resourceCache))
 			{
 				// Skip if wrong type
-				if (resourceCache.ResourceType != generatorData.resourceType)
+				if (resourceCache.ResourceType != resourceGeneratorData.resourceType)
 					continue;
 
 				// Add source
-				nearbyResourceNodes++;
+				nearbyResourceCache++;
 
 				// Break if max reached
-				if (nearbyResourceNodes >= generatorData.maxResourcesAmount)
+				if (nearbyResourceCache >= resourceGeneratorData.maxResourcesAmount)
 					break;
 			}
 		}
 
+		return nearbyResourceCache;
+	}
+
+	#endregion
+
+	void Awake()
+	{
+		generatorData = GetComponent<BuildingTypeHolder>().buildingType.generatorData;
+		timerMax = generatorData.timerMax;
+	}
+
+	void Start()
+	{
+		// Get Nodes
+		nearbyResourceNodes = GetNearbyResourceAmount(generatorData, transform.position);
+
+		// Script update
 		if (nearbyResourceNodes == 0)
 		{
 			enabled = false;
@@ -62,4 +79,10 @@ public class ResourceGenerator : MonoBehaviour
 			timer += timerMax;
 		}
 	}
+
+	public ResourceGeneratorData GetResourceGeneratorData() => generatorData;
+
+	public float GetTimerNormalized() => timer / timerMax;
+
+	public float GetAmountGeneratedPerSecond() { Debug.Log(timerMax); return 1f / timerMax; }
 }
