@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BuildingPickerUI : MonoBehaviour
@@ -22,6 +22,7 @@ public class BuildingPickerUI : MonoBehaviour
 	private Image arrowImageRef;
 	private BuildingTypeSO buildingCache;
 	private Vector2 deltaForArrow = new Vector2(0, -40f);
+	private MouseEnterExitEvents mouseEventsCache;
 
 	void Awake()
 	{
@@ -77,6 +78,15 @@ public class BuildingPickerUI : MonoBehaviour
 			BuildingManager.Instance.ChangeActiveBuilding(null);
 			UpdateActiveBuildingType();
 		});
+		mouseEventsCache = buttons[0].GetComponent<MouseEnterExitEvents>();
+		mouseEventsCache.OnMouseEnter += (object sender, EventArgs e) =>
+		{
+			TooltipUI.Instance.Show("Arrow", false);
+		};
+		mouseEventsCache.OnMouseExit += (object sender, EventArgs e) =>
+		{
+			TooltipUI.Instance.Hide();
+		};
 
 		arrowImageRef = currentInstance
 			.Find("Selected").GetComponent<Image>();
@@ -107,7 +117,17 @@ public class BuildingPickerUI : MonoBehaviour
 						BuildingManager.Instance.ChangeActiveBuilding(x);
 						UpdateActiveBuildingType();
 					});
+					mouseEventsCache = buttons[i].GetComponent<MouseEnterExitEvents>();
+					mouseEventsCache.OnMouseEnter += (object sender, EventArgs e) =>
+					{
+						TooltipUI.Instance.Show($"{x.buildingName}\n{x.GetConstructionCost()}", false);
+					};
+					mouseEventsCache.OnMouseExit += (object sender, EventArgs e) =>
+					{
+						TooltipUI.Instance.Hide();
+					};
 
+					// Image reference
 					referenceForSelected.Add(x, currentInstance
 						.Find("Selected").GetComponent<Image>());
 

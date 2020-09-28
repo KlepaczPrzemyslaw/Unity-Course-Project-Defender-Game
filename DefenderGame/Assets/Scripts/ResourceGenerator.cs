@@ -62,8 +62,6 @@ public class ResourceGenerator : MonoBehaviour
 				generatorData.timerMax *
 				(1 - (float)nearbyResourceNodes / generatorData.maxResourcesAmount);
 		}
-
-		Debug.Log($"{nearbyResourceNodes} gives: {1 / timerMax} pcs. {timerMax}");
 	}
 
 	void Update()
@@ -84,5 +82,5 @@ public class ResourceGenerator : MonoBehaviour
 
 	public float GetTimerNormalized() => timer / timerMax;
 
-	public float GetAmountGeneratedPerSecond() { Debug.Log(timerMax); return 1f / timerMax; }
+	public float GetAmountGeneratedPerSecond() => 1f / timerMax;
 }

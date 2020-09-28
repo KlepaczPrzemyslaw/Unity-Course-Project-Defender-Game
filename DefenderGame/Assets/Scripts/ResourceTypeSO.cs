@@ -5,4 +5,6 @@ public class ResourceTypeSO : ScriptableObject
 {
 	public string resourceName;
 	public Sprite sprite;
+	public string colorInHex;
+	public string nameShort;
 }

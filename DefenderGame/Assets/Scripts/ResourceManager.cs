@@ -26,12 +26,18 @@ public class ResourceManager : MonoBehaviour
 	public int GetResourceAmount(ResourceTypeSO resource) =>
 		resourceAmoutDic[resource];
 
-	public bool CanAfford(ResourceAmount[] resourceAmounts)
+	public bool CanAfford(ResourceAmount[] resourceAmounts, out string errorMessage)
 	{
 		foreach (var resourceAmount in resourceAmounts)
+		{
 			if (GetResourceAmount(resourceAmount.ResourceType) < resourceAmount.Amount)
+			{
+				errorMessage = "You do not have required resources!";
 				return false;
+			}
+		}
 
+		errorMessage = string.Empty;
 		return true;
 	}
 
