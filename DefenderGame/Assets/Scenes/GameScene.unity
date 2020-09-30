@@ -196,6 +196,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 11468520}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &18058340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2286201265834016168, guid: 8a4381876bbd90e45a4e709e7201f162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1112784244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96317e40da4ebaf4abd4a510cd7fb66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &20328469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18896,6 +18908,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 666776296020891968, guid: 8a4381876bbd90e45a4e709e7201f162,
+        type: 3}
+      propertyPath: healthSystem
+      value: 
+      objectReference: {fileID: 18058340}
     - target: {fileID: 4979504751741875745, guid: 8a4381876bbd90e45a4e709e7201f162,
         type: 3}
       propertyPath: m_LocalPosition.x
