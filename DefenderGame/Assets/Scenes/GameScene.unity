@@ -18295,6 +18295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxConstrctionRadius: 25
+  hqBuilding: {fileID: 1112784245}
 --- !u!1001 &1051128720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18975,6 +18976,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a4381876bbd90e45a4e709e7201f162, type: 3}
+--- !u!114 &1112784245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1059689404058669625, guid: 8a4381876bbd90e45a4e709e7201f162,
+    type: 3}
+  m_PrefabInstance: {fileID: 1112784244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5379913f66e6c94ba2308eb8808cca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1118817298
 PrefabInstance:
   m_ObjectHideFlags: 0

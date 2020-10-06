@@ -14,4 +14,7 @@ public static class UtilitiesClass
 		tempPosition.z = 0f;
 		return tempPosition;
 	}
+
+	public static float GetAngleFromVector(Vector3 vector) =>
+		Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
 }
