@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
 
 	// Consts
 	private const float lookForTargetOffset = 0.2f;
-	private const float shootTimerOffset = 0.5f;
+	private const float shootTimerOffset = 0.25f;
 
 	// Cache
 	private Collider2D[] buildingsSearchCache;
@@ -36,7 +36,7 @@ public class Tower : MonoBehaviour
 			lookForTargetTimer = Time.timeSinceLevelLoad +
 				lookForTargetOffset;
 		}
-		
+
 		// Shooting
 		Shoot();
 	}

@@ -17,4 +17,7 @@ public static class UtilitiesClass
 
 	public static float GetAngleFromVector(Vector3 vector) =>
 		Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+
+	public static int GetRandomArrayIndex(int length) =>
+		Mathf.FloorToInt(Random.Range(0f, length - 0.01f));
 }

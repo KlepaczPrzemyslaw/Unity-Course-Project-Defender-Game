@@ -112,5 +112,6 @@ public class BuildingManager : MonoBehaviour
 		return false;
 	}
 
+	public bool HqExist() => hqBuilding != null;
 	public Building GetHqBuilding() => hqBuilding;
 }

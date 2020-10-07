@@ -53,8 +53,17 @@ public class ArrowProjectile : MonoBehaviour
 			Destroy(gameObject);
 	}
 
-	private void SetTarget(Enemy enemy) =>
+	private void SetTarget(Enemy enemy)
+	{
 		targetEnemy = enemy;
+
+		// Set base information
+		moveDirCache = (targetEnemy.transform.position -
+				transform.position).normalized;
+		lastMoveDir = moveDirCache;
+		rotationCache.z = UtilitiesClass.GetAngleFromVector(moveDirCache);
+		transform.eulerAngles = rotationCache;
+	}
 
 	private void OnTriggerEnter2D(Collider2D collider)
 	{

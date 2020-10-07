@@ -30,10 +30,12 @@ public class Enemy : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		healthSystem = GetComponent<HealthSystem>();
 		healthSystem.OnDied += OnDied;
-		targetTransform = BuildingManager.Instance
-			.GetHqBuilding().transform;
 		lookForTargetTimer = Random.Range(0f,
 			lookForTargetOffset);
+
+		if (BuildingManager.Instance.HqExist())
+			targetTransform = BuildingManager.Instance
+				.GetHqBuilding().transform;
 	}
 
 	void OnDestroy()
@@ -103,7 +105,7 @@ public class Enemy : MonoBehaviour
 		}
 
 		// If still null
-		if (targetTransform == null)
+		if (targetTransform == null && BuildingManager.Instance.HqExist())
 			targetTransform = BuildingManager.Instance
 				.GetHqBuilding().transform;
 	}

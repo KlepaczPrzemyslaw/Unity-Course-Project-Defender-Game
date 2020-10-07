@@ -23,7 +23,7 @@ public class HealthBar : MonoBehaviour
 
 	private void UpdateBar()
 	{
-		barScaleCache.x = 1 - healthSystem.GetHealthAmountNormalized();
+		barScaleCache.x = healthSystem.GetHealthAmountNormalized();
 		barTransform.localScale = barScaleCache;
 	}
 
