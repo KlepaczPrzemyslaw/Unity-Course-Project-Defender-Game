@@ -15,6 +15,9 @@ public class BuildingManager : MonoBehaviour
 	[SerializeField]
 	private float maxConstrctionRadius = 25f;
 
+	[SerializeField]
+	private Building hqBuilding = null;
+
 	private BuildingTypeSO activeBuildingType;
 	private BuildingTypesSO availableBuildings;
 	private BoxCollider2D colliderCache;
@@ -108,4 +111,7 @@ public class BuildingManager : MonoBehaviour
 		errorMessage = "Too far from any other building!";
 		return false;
 	}
+
+	public bool HqExist() => hqBuilding != null;
+	public Building GetHqBuilding() => hqBuilding;
 }

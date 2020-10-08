@@ -5,10 +5,12 @@ public class BuildingTypeSO : ScriptableObject
 {
 	public string buildingName;
 	public Transform prefab;
+	public bool isGenerator;
 	public ResourceGeneratorData generatorData;
 	public Sprite sprite;
 	public float minConstrctionRadius;
 	public ResourceAmount[] constructionCostArray;
+	public int maxHealthAmount;
 
 	private string tempCache;
 
