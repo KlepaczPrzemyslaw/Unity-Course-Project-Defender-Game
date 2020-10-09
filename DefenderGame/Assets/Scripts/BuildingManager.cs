@@ -19,7 +19,6 @@ public class BuildingManager : MonoBehaviour
 	private Building hqBuilding = null;
 
 	private BuildingTypeSO activeBuildingType;
-	private BuildingTypesSO availableBuildings;
 	private BoxCollider2D colliderCache;
 	private Collider2D[] collidersCache;
 	private BuildingTypeHolder buildingTypeHolderCache;
@@ -28,8 +27,6 @@ public class BuildingManager : MonoBehaviour
 	void Awake()
 	{
 		Instance = this;
-		availableBuildings = Resources.Load<BuildingTypesSO>(
-			typeof(BuildingTypesSO).Name);
 		activeBuildingType = null;
 	}
 
@@ -43,7 +40,7 @@ public class BuildingManager : MonoBehaviour
 				ResourceManager.Instance.CanAfford(activeBuildingType.constructionCostArray, out errorMessageCache))
 			{
 				ResourceManager.Instance.SpendResources(activeBuildingType.constructionCostArray);
-				Instantiate(activeBuildingType.prefab, UtilitiesClass.GetMouseWorldPosition(), Quaternion.identity);
+				BuildingConstruction.Create(UtilitiesClass.GetMouseWorldPosition(), activeBuildingType);
 			}
 			else
 			{
@@ -69,7 +66,7 @@ public class BuildingManager : MonoBehaviour
 		if (buildingType == null)
 		{
 			errorMessage = "Unknown Error";
-				return false;
+			return false;
 		}
 
 		// Get colliders
