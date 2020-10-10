@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2137381427654621959}
   - component: {fileID: 8007674068501373137}
+  - component: {fileID: 4474890275750958096}
   m_Layer: 0
   m_Name: TreeBushes_1
   m_TagString: Untagged
@@ -81,6 +82,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4474890275750958096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471790222991265846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d1ae8b78629174dbe053312050c359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnlyOnce: 1
+  offsetForThisPart: -3
 --- !u!1 &766746179961913856
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9064450812318702635}
   - component: {fileID: 5899865323519720757}
+  - component: {fileID: 7601787871017028196}
   m_Layer: 0
   m_Name: TreeBushes_2
   m_TagString: Untagged
@@ -197,6 +213,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7601787871017028196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724870052136919265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d1ae8b78629174dbe053312050c359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnlyOnce: 1
+  offsetForThisPart: -1.9
 --- !u!1 &6935567414290222296
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883123605705503146}
   - component: {fileID: 9123379376543891443}
+  - component: {fileID: 6062687861119313712}
   m_Layer: 0
   m_Name: TreeBushes_4
   m_TagString: Untagged
@@ -278,6 +309,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6062687861119313712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935567414290222296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d1ae8b78629174dbe053312050c359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnlyOnce: 1
+  offsetForThisPart: -3.3
 --- !u!1 &7260127690804197385
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7107669108911837442}
   - component: {fileID: 7828525954310415181}
+  - component: {fileID: 3214216138587337855}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -359,6 +405,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3214216138587337855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260127690804197385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d1ae8b78629174dbe053312050c359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnlyOnce: 1
+  offsetForThisPart: 0
 --- !u!1 &8976734756563553963
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5145177241056235975}
   - component: {fileID: 6719419960567876367}
+  - component: {fileID: 1414639319835122808}
   m_Layer: 0
   m_Name: TreeBushes_3
   m_TagString: Untagged
@@ -440,3 +501,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1414639319835122808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976734756563553963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d1ae8b78629174dbe053312050c359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnlyOnce: 1
+  offsetForThisPart: -1.8
