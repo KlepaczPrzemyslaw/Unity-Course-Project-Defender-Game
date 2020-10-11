@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyWaveManager : MonoBehaviour
 {
+	public static EnemyWaveManager Instance { get; protected set; }
+
 	public event System.EventHandler OnWaveNumberChanged;
 
 	[SerializeField]
@@ -18,11 +20,13 @@ public class EnemyWaveManager : MonoBehaviour
 	private int waveNumber;
 
 	// Const
-	private const int baseWaveEnemies = 2;
+	private const int baseWaveEnemies = 200;
 	private const int waveIncreaser = 3;
 
 	// Cahce
 	private Vector3 randomPositionMultiplier = Vector3.zero;
+
+	void Awake() => Instance = this;
 
 	void Start()
 	{
@@ -42,7 +46,8 @@ public class EnemyWaveManager : MonoBehaviour
 
 	void Update()
 	{
-		if (Time.timeSinceLevelLoad > nextWaveSpawnTimer)
+		if (Time.timeSinceLevelLoad > nextWaveSpawnTimer &&
+			BuildingManager.Instance.HqExist())
 			StartCoroutine(SpawnWave());
 	}
 

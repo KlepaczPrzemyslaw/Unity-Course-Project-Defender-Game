@@ -23,11 +23,24 @@ public class BuildingManager : MonoBehaviour
 	private Collider2D[] collidersCache;
 	private BuildingTypeHolder buildingTypeHolderCache;
 	private string errorMessageCache = string.Empty;
+	private HealthSystem hqHealthSystem;
 
 	void Awake()
 	{
 		Instance = this;
 		activeBuildingType = null;
+	}
+
+	void Start()
+	{
+		hqHealthSystem = hqBuilding.GetComponent<HealthSystem>();
+		hqHealthSystem.OnDied += HQ_OnDied;
+	}
+
+	void OnDestroy()
+	{
+		if (hqHealthSystem != null)
+			hqHealthSystem.OnDied -= HQ_OnDied;
 	}
 
 	void Update()
@@ -59,6 +72,11 @@ public class BuildingManager : MonoBehaviour
 	}
 
 	public BuildingTypeSO GetActiveBuildingType() => activeBuildingType;
+
+	public bool HqExist() => hqBuilding != null;
+	public Building GetHqBuilding() => hqBuilding;
+
+	private void HQ_OnDied(object sender, EventArgs e) => GameOverUI.Instance.Show();
 
 	private bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position, out string errorMessage)
 	{
@@ -108,7 +126,4 @@ public class BuildingManager : MonoBehaviour
 		errorMessage = "Too far from any other building!";
 		return false;
 	}
-
-	public bool HqExist() => hqBuilding != null;
-	public Building GetHqBuilding() => hqBuilding;
 }
