@@ -44,13 +44,13 @@ public class ResourceGenerator : MonoBehaviour
 	{
 		generatorData = GetComponent<BuildingTypeHolder>().buildingType.generatorData;
 		timerMax = generatorData.timerMax;
+
+		// Get Nodes
+		nearbyResourceNodes = GetNearbyResourceAmount(generatorData, transform.position);
 	}
 
 	void Start()
 	{
-		// Get Nodes
-		nearbyResourceNodes = GetNearbyResourceAmount(generatorData, transform.position);
-
 		// Script update
 		if (nearbyResourceNodes == 0)
 		{
@@ -82,5 +82,7 @@ public class ResourceGenerator : MonoBehaviour
 
 	public float GetTimerNormalized() => timer / timerMax;
 
-	public float GetAmountGeneratedPerSecond() => 1f / timerMax;
+	public float GetAmountGeneratedPerSecond() => nearbyResourceNodes == 0 ?
+		0f :
+		1f / timerMax;
 }

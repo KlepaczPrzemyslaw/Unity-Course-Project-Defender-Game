@@ -11,6 +11,7 @@ public class BuildingTypeSO : ScriptableObject
 	public float minConstrctionRadius;
 	public ResourceAmount[] constructionCostArray;
 	public int maxHealthAmount;
+	public float construcionTimerMax;
 
 	private string tempCache;
 

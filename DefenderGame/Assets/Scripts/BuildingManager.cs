@@ -19,18 +19,28 @@ public class BuildingManager : MonoBehaviour
 	private Building hqBuilding = null;
 
 	private BuildingTypeSO activeBuildingType;
-	private BuildingTypesSO availableBuildings;
 	private BoxCollider2D colliderCache;
 	private Collider2D[] collidersCache;
 	private BuildingTypeHolder buildingTypeHolderCache;
 	private string errorMessageCache = string.Empty;
+	private HealthSystem hqHealthSystem;
 
 	void Awake()
 	{
 		Instance = this;
-		availableBuildings = Resources.Load<BuildingTypesSO>(
-			typeof(BuildingTypesSO).Name);
 		activeBuildingType = null;
+	}
+
+	void Start()
+	{
+		hqHealthSystem = hqBuilding.GetComponent<HealthSystem>();
+		hqHealthSystem.OnDied += HQ_OnDied;
+	}
+
+	void OnDestroy()
+	{
+		if (hqHealthSystem != null)
+			hqHealthSystem.OnDied -= HQ_OnDied;
 	}
 
 	void Update()
@@ -43,7 +53,7 @@ public class BuildingManager : MonoBehaviour
 				ResourceManager.Instance.CanAfford(activeBuildingType.constructionCostArray, out errorMessageCache))
 			{
 				ResourceManager.Instance.SpendResources(activeBuildingType.constructionCostArray);
-				Instantiate(activeBuildingType.prefab, UtilitiesClass.GetMouseWorldPosition(), Quaternion.identity);
+				BuildingConstruction.Create(UtilitiesClass.GetMouseWorldPosition(), activeBuildingType);
 			}
 			else
 			{
@@ -63,13 +73,18 @@ public class BuildingManager : MonoBehaviour
 
 	public BuildingTypeSO GetActiveBuildingType() => activeBuildingType;
 
+	public bool HqExist() => hqBuilding != null;
+	public Building GetHqBuilding() => hqBuilding;
+
+	private void HQ_OnDied(object sender, EventArgs e) => GameOverUI.Instance.Show();
+
 	private bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position, out string errorMessage)
 	{
 		// for null - return false
 		if (buildingType == null)
 		{
 			errorMessage = "Unknown Error";
-				return false;
+			return false;
 		}
 
 		// Get colliders
@@ -111,7 +126,4 @@ public class BuildingManager : MonoBehaviour
 		errorMessage = "Too far from any other building!";
 		return false;
 	}
-
-	public bool HqExist() => hqBuilding != null;
-	public Building GetHqBuilding() => hqBuilding;
 }
