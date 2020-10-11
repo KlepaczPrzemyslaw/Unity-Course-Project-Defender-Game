@@ -38,11 +38,17 @@ public class Building : MonoBehaviour
 	void OnMouseExit() =>
 		buildingDestroyButton?.gameObject?.SetActive(false);
 
-	private void OnDied(object sender, System.EventArgs e) =>
+	private void OnDied(object sender, System.EventArgs e)
+	{
+		SoundManager.Instance.PlaySound(SoundManager.Sounds.BuildingDestroyed);
 		Destroy(gameObject);
+	}
 
-	private void OnDamaged(object sender, System.EventArgs e) =>
+	private void OnDamaged(object sender, System.EventArgs e)
+	{
+		SoundManager.Instance.PlaySound(SoundManager.Sounds.BuildingDamaged);
 		buildingRepairButton?.gameObject?.SetActive(true);
+	}
 
 	private void OnHealed(object sender, System.EventArgs e)
 	{
