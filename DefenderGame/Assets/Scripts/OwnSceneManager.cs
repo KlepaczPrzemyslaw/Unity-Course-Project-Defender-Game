@@ -4,8 +4,8 @@ public class OwnSceneManager
 {
 	public enum Scenes
 	{
-		GameScene,
-		MainMenuScene
+		MainMenuScene,
+		GameScene
 	}
 
 	public static void Load(Scenes scene) =>

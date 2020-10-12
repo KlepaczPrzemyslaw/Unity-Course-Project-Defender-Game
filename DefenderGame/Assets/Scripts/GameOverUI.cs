@@ -35,11 +35,20 @@ public class GameOverUI : MonoBehaviour
 		summaryText.SetText(
 			$"You survived {EnemyWaveManager.Instance.GetWaveNumber()} Waves!");
 		gameObject.SetActive(true);
+		Time.timeScale = 0f;
 	}
 
-	private void RetryGame() => OwnSceneManager.Load(OwnSceneManager.Scenes.GameScene);
+	private void RetryGame()
+	{
+		Time.timeScale = 1f;
+		OwnSceneManager.Load(OwnSceneManager.Scenes.GameScene);
+	}
 
-	private void ExitGame() => OwnSceneManager.Load(OwnSceneManager.Scenes.MainMenuScene);
+	private void ExitGame()
+	{
+		Time.timeScale = 1f;
+		OwnSceneManager.Load(OwnSceneManager.Scenes.MainMenuScene);
+	}
 
 	private void Hide() => gameObject.SetActive(false);
 }

@@ -78,6 +78,9 @@ public class OptionsUI : MonoBehaviour
 	private void DecMusic() =>
 		MusicManager.Instance.ChangeVolumeBy(-1);
 
-	private void MyMenu() =>
+	private void MyMenu()
+	{
+		Time.timeScale = 1f;
 		OwnSceneManager.Load(OwnSceneManager.Scenes.MainMenuScene);
+	}
 }

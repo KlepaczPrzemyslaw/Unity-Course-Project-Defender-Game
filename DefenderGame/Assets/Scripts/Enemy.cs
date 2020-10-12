@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private float targetMaxRadius = 10f;
 
+	[SerializeField]
+	private int baseHealth = 3;
+
 	private Rigidbody2D rb;
 	private Transform targetTransform;
 	private float lookForTargetTimer;
@@ -29,6 +32,10 @@ public class Enemy : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 		healthSystem = GetComponent<HealthSystem>();
+		healthSystem.SetMaxHealthAmount(
+			baseHealth + Mathf.FloorToInt(
+				EnemyWaveManager.Instance.GetWaveNumber() / 4), true);
+
 		healthSystem.OnDied += OnDied;
 		healthSystem.OnDamaged += OnDamaged;
 		lookForTargetTimer = Random.Range(0f,
