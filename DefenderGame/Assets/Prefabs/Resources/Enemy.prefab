@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   targetMaxRadius: 10
+  baseHealth: 3
 --- !u!114 &8263970933333744023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558319436372859905, guid: bfe9173662a60744d8e84f520a035770,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3558319436372859911, guid: bfe9173662a60744d8e84f520a035770,
         type: 3}

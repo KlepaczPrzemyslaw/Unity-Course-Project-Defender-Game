@@ -20,8 +20,10 @@ public class EnemyWaveManager : MonoBehaviour
 	private int waveNumber;
 
 	// Const
-	private const int baseWaveEnemies = 200;
+	private const int baseWaveEnemies = 2;
 	private const int waveIncreaser = 3;
+	private const float betweenSpawns = .25f;
+	private const float spaceOffset = 2.5f;
 
 	// Cahce
 	private Vector3 randomPositionMultiplier = Vector3.zero;
@@ -59,17 +61,17 @@ public class EnemyWaveManager : MonoBehaviour
 
 	private IEnumerator SpawnWave()
 	{
-		// New timer
-		nextWaveSpawnTimer = Time.timeSinceLevelLoad + 20f;
+		// Stop Timer
+		nextWaveSpawnTimer = int.MaxValue;
 
 		// Spawer
 		for (int i = 0; i < (baseWaveEnemies + waveIncreaser * waveNumber); i++)
 		{
-			randomPositionMultiplier.x = Random.Range(-3f, 3f);
-			randomPositionMultiplier.y = Random.Range(-3f, 3f);
+			randomPositionMultiplier.x = Random.Range(-spaceOffset, spaceOffset);
+			randomPositionMultiplier.y = Random.Range(-spaceOffset, spaceOffset);
 			Enemy.Create(nextAttackFrom + randomPositionMultiplier);
 
-			yield return new WaitForSeconds(.5f);
+			yield return new WaitForSeconds(betweenSpawns);
 		}
 
 		// Cleanup
@@ -78,5 +80,10 @@ public class EnemyWaveManager : MonoBehaviour
 		nextAttackFrom = spawnPositions[UtilitiesClass
 			.GetRandomArrayIndex(spawnPositions.Count)];
 		waveCircleTrans.position = nextAttackFrom;
+
+		// New timer
+		nextWaveSpawnTimer = 
+			Time.timeSinceLevelLoad +
+			Mathf.Clamp(20 - Mathf.FloorToInt(waveNumber / 2), 5, 20);
 	}
 }

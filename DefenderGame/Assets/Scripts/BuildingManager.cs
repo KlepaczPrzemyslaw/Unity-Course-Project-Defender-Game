@@ -54,6 +54,7 @@ public class BuildingManager : MonoBehaviour
 			{
 				ResourceManager.Instance.SpendResources(activeBuildingType.constructionCostArray);
 				BuildingConstruction.Create(UtilitiesClass.GetMouseWorldPosition(), activeBuildingType);
+				SoundManager.Instance.PlaySound(SoundManager.Sounds.BuildingPlaced);
 			}
 			else
 			{
@@ -76,7 +77,11 @@ public class BuildingManager : MonoBehaviour
 	public bool HqExist() => hqBuilding != null;
 	public Building GetHqBuilding() => hqBuilding;
 
-	private void HQ_OnDied(object sender, EventArgs e) => GameOverUI.Instance.Show();
+	private void HQ_OnDied(object sender, EventArgs e)
+	{
+		SoundManager.Instance.PlaySound(SoundManager.Sounds.GameOver);
+		GameOverUI.Instance.Show();
+	}
 
 	private bool CanSpawnBuilding(BuildingTypeSO buildingType, Vector3 position, out string errorMessage)
 	{

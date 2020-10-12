@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
 	[SerializeField]
 	private float targetMaxRadius = 10f;
 
+	[SerializeField]
+	private int baseHealth = 3;
+
 	private Rigidbody2D rb;
 	private Transform targetTransform;
 	private float lookForTargetTimer;
@@ -29,7 +32,12 @@ public class Enemy : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 		healthSystem = GetComponent<HealthSystem>();
+		healthSystem.SetMaxHealthAmount(
+			baseHealth + Mathf.FloorToInt(
+				EnemyWaveManager.Instance.GetWaveNumber() / 4), true);
+
 		healthSystem.OnDied += OnDied;
+		healthSystem.OnDamaged += OnDamaged;
 		lookForTargetTimer = Random.Range(0f,
 			lookForTargetOffset);
 
@@ -41,6 +49,7 @@ public class Enemy : MonoBehaviour
 	void OnDestroy()
 	{
 		healthSystem.OnDied -= OnDied;
+		healthSystem.OnDamaged -= OnDamaged;
 	}
 
 	void Update()
@@ -65,9 +74,6 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	private void OnDied(object sender, System.EventArgs e) =>
-		Destroy(gameObject);
-
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.TryGetComponent(out collisionCache))
@@ -78,6 +84,15 @@ public class Enemy : MonoBehaviour
 				Destroy(gameObject);
 			}
 		}
+	}
+
+	private void OnDamaged(object sender, System.EventArgs e) =>
+		SoundManager.Instance.PlaySound(SoundManager.Sounds.EnemyHit);
+
+	private void OnDied(object sender, System.EventArgs e)
+	{
+		SoundManager.Instance.PlaySound(SoundManager.Sounds.EnemyDie);
+		Destroy(gameObject);
 	}
 
 	private void LookForTargets()
