@@ -35,6 +35,10 @@ public class OptionsUI : MonoBehaviour
 
 		moreMusicBtn.onClick.AddListener(IncMusic);
 		lessMusicBtn.onClick.AddListener(DecMusic);
+
+		mainMenuBtn.onClick.AddListener(MyMenu);
+
+		gameObject.SetActive(false);
 	}
 
 	void OnDestroy()
@@ -52,16 +56,28 @@ public class OptionsUI : MonoBehaviour
 		volumeText.SetText(MusicManager.Volume.ToString());
 	}
 
-	private void IncSound() => SoundManager.Instance.ChangeVolumeBy(1);
-
-	private void DecSound() => SoundManager.Instance.ChangeVolumeBy(-1);
-
-	private void IncMusic() => MusicManager.Instance.ChangeVolumeBy(1);
-
-	private void DecMusic() => MusicManager.Instance.ChangeVolumeBy(-1);
-
-	private void MyMenu()
+	public void ToggleOptions()
 	{
+		gameObject.SetActive(!gameObject.activeSelf);
 
+		if (gameObject.activeSelf)
+			Time.timeScale = 0;
+		else
+			Time.timeScale = 1;
 	}
+
+	private void IncSound() =>
+		SoundManager.Instance.ChangeVolumeBy(1);
+
+	private void DecSound() =>
+		SoundManager.Instance.ChangeVolumeBy(-1);
+
+	private void IncMusic() =>
+		MusicManager.Instance.ChangeVolumeBy(1);
+
+	private void DecMusic() =>
+		MusicManager.Instance.ChangeVolumeBy(-1);
+
+	private void MyMenu() =>
+		OwnSceneManager.Load(OwnSceneManager.Scenes.MainMenuScene);
 }
