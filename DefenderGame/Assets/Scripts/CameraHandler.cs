@@ -18,6 +18,9 @@ public class CameraHandler : MonoBehaviour
 	private const float minScrollValue = 10f;
 	private const float maxScrollValue = 30f;
 
+	// Chace
+	private Vector3 clampPositionCache = Vector3.zero;
+
 	void Start()
 	{
 		ortographicSize = virtualCamera.m_Lens.OrthographicSize;
@@ -34,6 +37,11 @@ public class CameraHandler : MonoBehaviour
 
 		// Setup new position
 		transform.position += positionCache * moveSpeed * Time.deltaTime;
+		// Clamping
+		clampPositionCache = transform.position;
+		clampPositionCache.x = Mathf.Clamp(clampPositionCache.x, -100, 100);
+		clampPositionCache.y = Mathf.Clamp(clampPositionCache.y, -110, 110);
+		transform.position = clampPositionCache;
 
 		// Setup zoom in/out
 		targetOrtographicSize += (-Input.mouseScrollDelta.y) * zoomMultiplier;
