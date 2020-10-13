@@ -24,6 +24,10 @@ public class OptionsUI : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI volumeText = null;
 
+	[Header("ES")]
+	[SerializeField]
+	private Toggle edgeScrolling = null;
+
 	[Header("Menu")]
 	[SerializeField]
 	private Button mainMenuBtn = null;
@@ -36,10 +40,14 @@ public class OptionsUI : MonoBehaviour
 		moreMusicBtn.onClick.AddListener(IncMusic);
 		lessMusicBtn.onClick.AddListener(DecMusic);
 
+		edgeScrolling.onValueChanged.AddListener(ChangeEdgeScrolling);
+
 		mainMenuBtn.onClick.AddListener(MyMenu);
 
 		gameObject.SetActive(false);
 	}
+
+	void Start() => edgeScrolling.isOn = CameraHandler.IsEdgeScrolling;
 
 	void OnDestroy()
 	{
@@ -47,6 +55,7 @@ public class OptionsUI : MonoBehaviour
 		lessSoundBtn.onClick.RemoveAllListeners();
 		moreMusicBtn.onClick.RemoveAllListeners();
 		lessMusicBtn.onClick.RemoveAllListeners();
+		edgeScrolling.onValueChanged.RemoveAllListeners();
 		mainMenuBtn.onClick.RemoveAllListeners();
 	}
 
@@ -77,6 +86,9 @@ public class OptionsUI : MonoBehaviour
 
 	private void DecMusic() =>
 		MusicManager.Instance.ChangeVolumeBy(-1);
+
+	private void ChangeEdgeScrolling(bool value) =>
+		CameraHandler.SetEdgeScrolling(value);
 
 	private void MyMenu()
 	{
