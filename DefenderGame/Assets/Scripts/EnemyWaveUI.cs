@@ -10,6 +10,9 @@ public class EnemyWaveUI : MonoBehaviour
 	private TextMeshProUGUI waveNumberText = null;
 
 	[SerializeField]
+	private TextMeshProUGUI toDisasterText = null;
+
+	[SerializeField]
 	private TextMeshProUGUI waveMessageText = null;
 
 	[SerializeField]
@@ -33,6 +36,7 @@ public class EnemyWaveUI : MonoBehaviour
 	{
 		mainCam = Camera.main;
 		SetWaveNumberText($"Wave: {waveManager.GetWaveNumber()}");
+		SetToDisasterText(EnemyWaveManager.Instance.GetWaveNumber());
 		waveManager.OnWaveNumberChanged += OnWaveNumberChanged;
 	}
 
@@ -87,14 +91,22 @@ public class EnemyWaveUI : MonoBehaviour
 		}
 	}
 
-	private void OnWaveNumberChanged(object sender, System.EventArgs e) =>
+	private void OnWaveNumberChanged(object sender, System.EventArgs e)
+	{
 		SetWaveNumberText($"Wave: {waveManager.GetWaveNumber()}");
+		SetToDisasterText(EnemyWaveManager.Instance.GetWaveNumber());
+	}
 
 	private void SetMessageText(string message) =>
 		waveMessageText.SetText(message);
 
 	private void SetWaveNumberText(string message) =>
 		waveNumberText.SetText(message);
+
+	private void SetToDisasterText(int currentWaveNumber) =>
+		toDisasterText.SetText(currentWaveNumber > 35 ? 
+			"DISASTER: NOW!" : 
+			$"{36 - currentWaveNumber}: Waves To Disaster");
 
 	private void LocalizeEnemyTarget()
 	{
