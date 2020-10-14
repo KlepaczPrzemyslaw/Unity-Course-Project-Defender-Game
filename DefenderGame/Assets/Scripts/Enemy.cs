@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
 	private Transform targetTransform;
 	private float lookForTargetTimer;
 	private HealthSystem healthSystem;
+	private Transform particles;
 
 	// Consts
 	private const float lookForTargetOffset = 0.2f;
@@ -40,6 +41,8 @@ public class Enemy : MonoBehaviour
 		healthSystem.OnDamaged += OnDamaged;
 		lookForTargetTimer = Random.Range(0f,
 			lookForTargetOffset);
+
+		particles = Resources.Load<Transform>("pfEnemyDieParticles");
 
 		if (BuildingManager.Instance.HqExist())
 			targetTransform = BuildingManager.Instance
@@ -81,7 +84,7 @@ public class Enemy : MonoBehaviour
 			if (collisionCache.TryGetComponent(out healthCache))
 			{
 				healthCache.Damage(10);
-				Destroy(gameObject);
+				healthSystem.Damage(int.MaxValue);
 			}
 		}
 	}
@@ -92,6 +95,7 @@ public class Enemy : MonoBehaviour
 	private void OnDied(object sender, System.EventArgs e)
 	{
 		SoundManager.Instance.PlaySound(SoundManager.Sounds.EnemyDie);
+		Instantiate(particles, transform.position, Quaternion.identity);
 		Destroy(gameObject);
 	}
 
