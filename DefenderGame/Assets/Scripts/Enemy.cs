@@ -28,14 +28,21 @@ public class Enemy : MonoBehaviour
 	private Building collisionCache;
 	private HealthSystem healthCache;
 	private Collider2D[] buildingsSearchCache;
+	private int calcHealthCache;
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		healthSystem = GetComponent<HealthSystem>();
-		healthSystem.SetMaxHealthAmount(
-			baseHealth + Mathf.FloorToInt(
-				EnemyWaveManager.Instance.GetWaveNumber() / 4), true);
+
+		// Base
+		calcHealthCache = baseHealth +
+			Mathf.FloorToInt(EnemyWaveManager.Instance.GetWaveNumber() / 4);
+		// Extra
+		if (EnemyWaveManager.Instance.GetWaveNumber() > 35)
+			calcHealthCache += EnemyWaveManager.Instance.GetWaveNumber() - 35;
+		// Set
+		healthSystem.SetMaxHealthAmount(calcHealthCache, true);
 
 		healthSystem.OnDied += OnDied;
 		healthSystem.OnDamaged += OnDamaged;
