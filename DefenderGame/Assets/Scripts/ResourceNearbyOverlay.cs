@@ -19,7 +19,8 @@ public class ResourceNearbyOverlay : MonoBehaviour
 
 	void Update()
 	{
-		nerbyResAmountCache = ResourceGenerator.GetNearbyResourceAmount(resourceGeneratorData, transform.position);
+		nerbyResAmountCache = ResourceGenerator.GetNearbyResourceAmount(resourceGeneratorData, 
+			transform.position - transform.localPosition);
 		text.text = $"{Mathf.RoundToInt((float)nerbyResAmountCache / resourceGeneratorData.maxResourcesAmount * 100f)}%";
 	}
 
