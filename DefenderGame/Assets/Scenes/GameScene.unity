@@ -8450,6 +8450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 297531027}
   - component: {fileID: 297531026}
+  - component: {fileID: 297531028}
   m_Layer: 0
   m_Name: Global Light 2D
   m_TagString: Untagged
@@ -8512,6 +8513,48 @@ Transform:
   m_Father: {fileID: 753867657}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &297531028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297531025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871afa5b2838cf54bb227d0e0cc6854b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 0.78125805, b: 0.4669811, a: 1}
+    key2: {r: 0.57254905, g: 0.75686276, b: 0.8039216, a: 0}
+    key3: {r: 0.5711552, g: 0.7535942, b: 0.8018868, a: 0}
+    key4: {r: 0.8490566, g: 0.75206995, b: 0.5246529, a: 0}
+    key5: {r: 1, g: 1, b: 1, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 16962
+    ctime1: 23708
+    ctime2: 31033
+    ctime3: 38936
+    ctime4: 47609
+    ctime5: 57440
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 6
+    m_NumAlphaKeys: 2
+  secondsPerDay: 60
 --- !u!1 &299898042
 GameObject:
   m_ObjectHideFlags: 0
