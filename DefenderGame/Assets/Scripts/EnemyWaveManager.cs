@@ -18,11 +18,13 @@ public class EnemyWaveManager : MonoBehaviour
 	private Vector3 nextAttackFrom;
 	private float nextWaveSpawnTimer;
 	private int waveNumber;
+	private float currentSpawnRate = betweenSpawns;
 
 	// Const
 	private const int baseWaveEnemies = 2;
 	private const int waveIncreaser = 3;
 	private const float betweenSpawns = .25f;
+	private const float endgameBetweenSpawns = .08f;
 	private const float spaceOffset = 2.5f;
 
 	// Cahce
@@ -61,6 +63,12 @@ public class EnemyWaveManager : MonoBehaviour
 
 	private IEnumerator SpawnWave()
 	{
+		// Endgame check
+		if (waveNumber <= 35)
+			currentSpawnRate = betweenSpawns;
+		else
+			currentSpawnRate = endgameBetweenSpawns;
+
 		// Stop Timer
 		nextWaveSpawnTimer = int.MaxValue;
 
@@ -71,7 +79,7 @@ public class EnemyWaveManager : MonoBehaviour
 			randomPositionMultiplier.y = Random.Range(-spaceOffset, spaceOffset);
 			Enemy.Create(nextAttackFrom + randomPositionMultiplier);
 
-			yield return new WaitForSeconds(betweenSpawns);
+			yield return new WaitForSeconds(currentSpawnRate);
 		}
 
 		// Cleanup
