@@ -11,3 +11,6 @@
 - Download this repository
 - Extract files from "The Game" directory
 - Open .exe file
+
+### My Record
+- 59 waves
